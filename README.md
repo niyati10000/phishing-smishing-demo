@@ -75,9 +75,9 @@ cd smishing-lab-demo
 2.**Create virtual environment**
 
 python -m venv .venv
-# Windows
+ **Windows**
 .venv\Scripts\activate
-# Mac/Linux
+ **Mac/Linux**
 source .venv/bin/activate
 
 3.**Install dependencies**
