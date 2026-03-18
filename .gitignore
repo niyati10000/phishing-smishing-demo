@@ -1,0 +1,16 @@
+# Python
+__pycache__/
+*.pyc
+.env
+.venv
+venv/
+env/
+
+# Project data
+captured_creds.txt
+*.log
+
+# IDE
+.vscode/
+.idea/
+*.swp

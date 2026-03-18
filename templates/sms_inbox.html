@@ -1,0 +1,270 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>SMS Inbox - Simulation</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+        }
+        
+        body {
+            background: #f5f5f5;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            padding: 20px;
+        }
+        
+        .warning-banner {
+            background: #ff4444;
+            color: white;
+            text-align: center;
+            padding: 12px;
+            font-weight: bold;
+            width: 100%;
+            position: fixed;
+            top: 0;
+            left: 0;
+            z-index: 1000;
+            font-size: 14px;
+        }
+        
+        .phone {
+            width: 400px;
+            background: white;
+            border-radius: 40px;
+            box-shadow: 0 30px 60px rgba(0,0,0,0.3);
+            overflow: hidden;
+            margin-top: 50px;
+            border: 8px solid #1a1a1a;
+        }
+        
+        .phone-header {
+            background: #1a1a1a;
+            color: white;
+            padding: 20px 20px 10px 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .time {
+            font-size: 16px;
+            font-weight: 600;
+        }
+        
+        .search-bar {
+            background: #2c2c2c;
+            margin: 10px 20px;
+            padding: 10px 15px;
+            border-radius: 10px;
+            color: #8e8e8e;
+            font-size: 14px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .messages-container {
+            padding: 10px 15px 20px 15px;
+        }
+        
+        .message {
+            background: white;
+            border-radius: 20px;
+            padding: 15px;
+            margin-bottom: 15px;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+            border: 1px solid #e0e0e0;
+            transition: transform 0.2s;
+            cursor: pointer;
+            position: relative;
+        }
+        
+        .message:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+        
+        .message.urgent {
+            border-left: 4px solid #f44336;
+        }
+        
+        .sender-icon {
+            width: 45px;
+            height: 45px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 24px;
+            margin-right: 12px;
+            float: left;
+        }
+        
+        .facebook .sender-icon { background: #1877f2; color: white; }
+        .sbi .sender-icon { background: #2b6eb0; color: white; }
+        .apple .sender-icon { background: #000000; color: white; }
+        
+        .message-content {
+            margin-left: 57px;
+        }
+        
+        .sender-name {
+            font-weight: 700;
+            font-size: 16px;
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 3px;
+        }
+        
+        .sender-type {
+            color: #666;
+            font-size: 12px;
+            margin-bottom: 5px;
+        }
+        
+        .message-text {
+            color: #333;
+            font-size: 14px;
+            line-height: 1.4;
+            margin-bottom: 8px;
+        }
+        
+        .message-link {
+            color: #039be5;
+            text-decoration: none;
+            font-weight: 500;
+            font-size: 13px;
+            background: #f0f8ff;
+            padding: 5px 10px;
+            border-radius: 15px;
+            display: inline-block;
+        }
+        
+        .time-small {
+            color: #999;
+            font-size: 11px;
+            margin-top: 5px;
+        }
+        
+        .instruction-box {
+            background: #e3f2fd;
+            border: 2px dashed #2196f3;
+            padding: 15px;
+            border-radius: 10px;
+            margin: 20px 0;
+            text-align: center;
+        }
+        
+        .portal-badge {
+            position: absolute;
+            top: -5px;
+            right: 10px;
+            background: #ff9800;
+            color: white;
+            padding: 3px 10px;
+            border-radius: 15px;
+            font-size: 10px;
+            font-weight: bold;
+        }
+        
+        .footer {
+            background: #f5f5f5;
+            padding: 15px;
+            text-align: center;
+            font-size: 11px;
+            color: #999;
+            border-top: 1px solid #e0e0e0;
+        }
+    </style>
+</head>
+<body>
+    <div class="warning-banner">
+        ⚠️ EDUCATIONAL SMISHING SIMULATION - DO NOT USE REAL ACCOUNTS ⚠️
+    </div>
+
+    <div class="phone">
+        <div class="phone-header">
+            <div class="time">3:45 PM</div>
+            <div class="status-icons">
+                <span>📶</span>
+                <span>📶</span>
+                <span>🔋</span>
+            </div>
+        </div>
+        
+        <div class="search-bar">
+            <span>🔍</span>
+            <span>Search messages</span>
+        </div>
+        
+        <div class="instruction-box">
+            <h3 style="color: #1976d2;">📱 3 DIFFERENT PHISHING ATTACKS</h3>
+            <p>Click any message to see different fake portals</p>
+        </div>
+        
+        <div class="messages-container">
+            <!-- MESSAGE 1: Facebook Phishing -->
+            <div class="message facebook urgent" onclick="window.location.href='/fake-login?portal=facebook&attack_type=delivery'">
+                <span class="portal-badge">Facebook Clone</span>
+                <div class="sender-icon">f</div>
+                <div class="message-content">
+                    <div class="sender-name">
+                        Facebook Security
+                    </div>
+                    <div class="sender-type">Social Media</div>
+                    <div class="message-text">
+                        ⚠️ Suspicious login detected from new device. Verify your account immediately to prevent lockout.
+                    </div>
+                    <span class="message-link">https://facebook-security.com/verify</span>
+                    <div class="time-small">Just now</div>
+                </div>
+            </div>
+            
+            <!-- MESSAGE 2: SBI Bank Phishing (2-step) -->
+            <div class="message sbi urgent" onclick="window.location.href='/fake-login?portal=sbi'">
+                <span class="portal-badge">SBI Bank (2 Steps)</span>
+                <div class="sender-icon">🏦</div>
+                <div class="message-content">
+                    <div class="sender-name">
+                        SBI Bank Alert
+                    </div>
+                    <div class="sender-type">Banking</div>
+                    <div class="message-text">
+                        🔐 Your SBI netbanking has been temporarily blocked due to failed login attempts. Update your details to restore access.
+                    </div>
+                    <span class="message-link">https://sbisecure.online/update</span>
+                    <div class="time-small">15 min ago</div>
+                </div>
+            </div>
+            
+            <!-- MESSAGE 3: Apple ID Phishing -->
+            <div class="message apple urgent" onclick="window.location.href='/fake-login?portal=apple'">
+                <span class="portal-badge">Apple ID</span>
+                <div class="sender-icon"></div>
+                <div class="message-content">
+                    <div class="sender-name">
+                        Apple ID Support
+                    </div>
+                    <div class="sender-type">Account Services</div>
+                    <div class="message-text">
+                        📱 Your Apple ID was used to sign in on an iPhone 15 Pro in New Delhi. If this wasn't you, secure your account now.
+                    </div>
+                    <span class="message-link">https://appleid-verification.com</span>
+                    <div class="time-small">1 hour ago</div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="footer">
+            SMISHING SIMULATION - 3 DIFFERENT PORTALS<br>
+            Click any message to test - RED FLAGS appear as popups!
+        </div>
+    </div>
+</body>
+</html>
